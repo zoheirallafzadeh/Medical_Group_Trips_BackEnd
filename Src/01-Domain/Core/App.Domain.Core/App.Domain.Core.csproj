@@ -10,7 +10,6 @@
     <Folder Include="Person\AppServices\" />
     <Folder Include="Person\Data\" />
     <Folder Include="Person\DTOs\" />
-    <Folder Include="Person\Entities\" />
     <Folder Include="Person\Enum\" />
     <Folder Include="Person\Services\" />
     <Folder Include="t\AppServices\" />
@@ -19,6 +18,10 @@
     <Folder Include="t\Entities\" />
     <Folder Include="t\Enum\" />
     <Folder Include="t\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.5" />
   </ItemGroup>
 
 </Project>
