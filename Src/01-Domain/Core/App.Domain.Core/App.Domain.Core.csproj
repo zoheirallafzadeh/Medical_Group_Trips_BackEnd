@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="t\" />
+    <Folder Include="Person\AppServices\" />
+    <Folder Include="Person\Data\" />
+    <Folder Include="Person\DTOs\" />
+    <Folder Include="Person\Entities\" />
+    <Folder Include="Person\Enum\" />
+    <Folder Include="Person\Services\" />
+    <Folder Include="t\AppServices\" />
+    <Folder Include="t\Data\" />
+    <Folder Include="t\DTOs\" />
+    <Folder Include="t\Entities\" />
+    <Folder Include="t\Enum\" />
+    <Folder Include="t\Services\" />
   </ItemGroup>
 
 </Project>
