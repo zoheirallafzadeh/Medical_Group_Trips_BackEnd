@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace App.Domain.Core.Person.Entities
 {
@@ -21,6 +17,7 @@ namespace App.Domain.Core.Person.Entities
         //public int TypeOfMedicalCertificateId { get; set; }
         public required TypeOfMedicalCertificate TypeOfMedicalCertificate { get; set; }
         
+        public string? Value { get; set; }
         //public int DocumentID { get; set; }
         public Document? Document { get; set; }
 

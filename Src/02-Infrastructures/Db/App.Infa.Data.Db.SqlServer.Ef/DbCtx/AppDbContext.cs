@@ -1,11 +1,14 @@
-﻿using App.Domain.Core.Area.Entities;
+﻿using App.Domain.Core.Activity.Entities;
+using App.Domain.Core.Area.Entities;
 using App.Domain.Core.Person.Entities;
 using Azure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection.Emit;
 using System.Reflection.PortableExecutable;
+using System.Runtime.Intrinsics.X86;
 
 
 namespace App.Infa.Data.Db.SqlServer.Ef.DbCtx
@@ -38,13 +41,43 @@ namespace App.Infa.Data.Db.SqlServer.Ef.DbCtx
         public DbSet<Area> Areas { get; set; }
 
 
-    }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<PreRegistration> PreRegistrations { get; set; }
+        public DbSet<FinalRegistration> FinalRegistrations { get; set; }
+
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Person>(entity =>
+            {
+                entity.Property(e => e.NationalCode).IsFixedLength();
+                //entity.Property(e => e.RegesterDateTime).HasDefaultValueSql("(getdate())");
+            });
+
+            modelBuilder.Entity<PreRegistration>(entity =>
+            {
+                entity.Property(e => e.RegesterDateTime).HasDefaultValueSql("(getdate())");
+            });
+
+                
+
+        }
 }
+
+
+
+
+
+
+
+
 
 
 public class User : IdentityUser<int>
 {
-    public int? PersonId { get; set; }
+    public int PersonId { get; set; }
 
 }
 
