@@ -14,7 +14,7 @@ namespace App.Domain.Core.Person.Entities
         public required string Name { get; set; }
         public bool IsNeedConfirmation { get; set; }
         public int SkillId { get; set; }
-        [InverseProperty("")]
+        //[InverseProperty("")]
         public virtual required Skill Skill { get; set; }
     }
 }

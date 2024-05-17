@@ -18,11 +18,15 @@ namespace App.Domain.Core.Person.Entities
         [Unicode(false)]
         public required string Name { get; set; }
 
-        [InverseProperty("Skill")]
+        //[InverseProperty("Skill")]
         public virtual List<SkillTranslate>? SkillTranslate { get; } = new();
-        [InverseProperty("Skills")]
-        public List<Person> Persons { get; set; } = new();
+        //[InverseProperty("Skills")]
+        public virtual List<Person>? Persons { get; set; } = new();
+        public int? TypeOfMedicalCertificateId { get; set; }
+        public TypeOfMedicalCertificate? TypeOfMedicalCertificate { get; set; }
 
+        public int? PersonConfirmationCertificateId { get; set; }
+        public virtual PersonConfirmationCertificate? PersonConfirmationCertificate { get; set; }
 
     }
 }

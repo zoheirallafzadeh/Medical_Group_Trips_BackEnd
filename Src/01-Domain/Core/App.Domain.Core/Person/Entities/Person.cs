@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Domain.Core.Person.Entities
 {
-    [Table("Person", Schema = "PERSON")]
+    [Table("People", Schema = "PERSON")]
     public class Person
     {
         public int Id { get; set; }
@@ -32,11 +32,17 @@ namespace App.Domain.Core.Person.Entities
 
         [StringLength(13)]
         [Unicode(false)]
-        public string? MobNumber { get; set; }
+        public string? mobnumber { get; set; }
 
         public bool Gender { get; set; }
+        public virtual List<Skill>? Skills { get; set; }
+        //[InverseProperty("Person")]
+        public virtual List<Document>? Documents { get; set; }
 
-        public List<Skill>? Skills { get; set; }
-        public List<Document>? Documents { get; set; }
+        public int? AspNetUsersId { get; set; }
+
+        public int? PersonConfirmationCertificateId { get; set; }
+        public PersonConfirmationCertificate? PersonConfirmationCertificate { get; set; }
+
     }
 }
