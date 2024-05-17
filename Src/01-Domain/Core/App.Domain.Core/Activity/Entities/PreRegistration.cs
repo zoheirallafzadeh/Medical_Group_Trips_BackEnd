@@ -1,7 +1,10 @@
 ﻿
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace App.Domain.Core.Activity.Entities
 {
+    [Table("PreRegistration", Schema = "ACTIVITY")]
     public class PreRegistration
     {
         public int Id { get; set; }
@@ -14,6 +17,10 @@ namespace App.Domain.Core.Activity.Entities
         public int ResponsibilityId { get; set; }
         public virtual required Responsibility Responsibility { get; set; }
         public int PersonCreatorId { get; set; }
+
+        public bool IsDeleted { get; set; }
+        public int PersonDeletedId { get; set; }
+
 
     }
 }

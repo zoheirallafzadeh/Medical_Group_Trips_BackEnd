@@ -10,7 +10,6 @@
     <Folder Include="Activity\AppServices\" />
     <Folder Include="Activity\Data\" />
     <Folder Include="Activity\DTOs\" />
-    <Folder Include="Activity\Enum\" />
     <Folder Include="Activity\Services\" />
     <Folder Include="Area\AppServices\" />
     <Folder Include="Area\Data\" />

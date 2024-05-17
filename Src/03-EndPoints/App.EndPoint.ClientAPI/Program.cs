@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 
 
 
-builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(@"Server=DESKTOP-OG56BKU;Integrated Security=true;Database=GPRI10;TrustServerCertificate=True;").LogTo(Console.WriteLine));
+builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(@"Server=DESKTOP-OG56BKU;Integrated Security=true;Database=GPRI12;TrustServerCertificate=True;").LogTo(Console.WriteLine));
 
 
 builder.Services.AddIdentity<User, Role>(option =>

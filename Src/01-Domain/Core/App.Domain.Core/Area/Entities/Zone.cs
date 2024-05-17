@@ -16,7 +16,7 @@ namespace App.Domain.Core.Area.Entities
         public int ProvinceId { get; set; }
         public virtual required Province Province { get; set; }
         public virtual List<Area>? Areas { get; set; }
-        public virtual List<Airport>? Airports { get; set; }
+        public virtual List<TransportationArea>? TransportationAreas { get; set; }
 
     }
 }

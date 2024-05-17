@@ -1,8 +1,10 @@
 ﻿using App.Domain.Core.Application.Enum;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace App.Domain.Core.Activity.Entities
 {
+    [Table("ResponsibilityTR", Schema = "ACTIVITY")]
     public class ResponsibilityTR
     {
         public int Id { get; set; }

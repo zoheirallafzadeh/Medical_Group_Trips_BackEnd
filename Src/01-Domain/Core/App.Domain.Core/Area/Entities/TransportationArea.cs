@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Domain.Core.Area.Entities
 {
-    [Table("Airport", Schema = "AREA")]
-    public class Airport
+    [Table("TransportationArea", Schema = "AREA")]
+    public class TransportationArea
     {
         public int Id { get; set; }
         [MaxLength(32)]

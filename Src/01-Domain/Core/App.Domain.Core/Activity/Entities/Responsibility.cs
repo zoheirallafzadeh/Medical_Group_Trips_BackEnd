@@ -1,6 +1,9 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace App.Domain.Core.Activity.Entities
 {
+    [Table("Responsibility", Schema = "ACTIVITY")]
     public class Responsibility
     {
         public int Id { get; set; }
