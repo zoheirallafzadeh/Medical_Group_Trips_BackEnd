@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240517084143_c2")]
-    partial class c2
+    [Migration("20240517210532_creat")]
+    partial class creat
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +25,412 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.Activity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AreaId")
+                        .HasColumnType("int")
+                        .HasComment("Place of service");
+
+                    b.Property<DateOnly>("EndDate")
+                        .HasColumnType("date");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDone")
+                        .HasColumnType("bit");
+
+                    b.Property<DateOnly>("StartDate")
+                        .HasColumnType("date");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Activity", "ACTIVITY");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.FinalRegistration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ActivityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDateTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("NumberOfPatient")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonCreatorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResponsibilityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("ResponsibilityId");
+
+                    b.ToTable("FinalRegistration", "ACTIVITY");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.PreRegistration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ActivityId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CreatedDateTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PersonCreatorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonDeletedId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ResponsibilityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.HasIndex("ResponsibilityId");
+
+                    b.ToTable("PreRegistration", "ACTIVITY");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.RequestTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatedPersonId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<DateOnly>("DataRequest")
+                        .HasColumnType("date");
+
+                    b.Property<int>("DeletedPersonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("FinalRegistrationId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FinalRegistrationId");
+
+                    b.ToTable("RequestTicket", "ACTIVITY");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.Responsibility", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EnName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RelevantSkillsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Responsibility", "ACTIVITY");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.ResponsibilityTR", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Language")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ResponsibilityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ResponsibilityId");
+
+                    b.ToTable("ResponsibilityTR", "ACTIVITY");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.Ticket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CrearedTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("(getdate())");
+
+                    b.Property<int>("CreatedPersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DeletedPersonId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TransportationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TransportationId");
+
+                    b.ToTable("Ticket", "ACTIVITY");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.Transportation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ActivityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EndTransportationAreaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StartTransportationAreaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeOfTransportation")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("startDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityId");
+
+                    b.ToTable("Transportation", "ACTIVITY");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Area", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EnName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<int>("ZoneId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ZoneId");
+
+                    b.ToTable("Area", "AREA");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Country", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EnName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Country", "AREA");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Province", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CountryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EnName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Province", "AREA");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.TransportationArea", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EnName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<int>("ZoneId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ZoneId");
+
+                    b.ToTable("TransportationArea", "AREA");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Zone", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("EnName")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
+
+                    b.Property<int>("ProvinceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("Zone", "AREA");
+                });
+
             modelBuilder.Entity("App.Domain.Core.Person.Entities.Document", b =>
                 {
                     b.Property<int>("Id")
@@ -34,7 +440,6 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
@@ -96,7 +501,8 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                         .IsRequired()
                         .HasMaxLength(10)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(10)");
+                        .HasColumnType("char(10)")
+                        .IsFixedLength();
 
                     b.Property<int?>("PersonConfirmationCertificateId")
                         .HasColumnType("int");
@@ -122,6 +528,12 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsConfirmedActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -405,6 +817,9 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -432,6 +847,132 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.FinalRegistration", b =>
+                {
+                    b.HasOne("App.Domain.Core.Activity.Entities.Activity", "Activity")
+                        .WithMany("FinalRegistrations")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Domain.Core.Activity.Entities.Responsibility", "Responsibility")
+                        .WithMany("FinalRegistrations")
+                        .HasForeignKey("ResponsibilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Activity");
+
+                    b.Navigation("Responsibility");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.PreRegistration", b =>
+                {
+                    b.HasOne("App.Domain.Core.Activity.Entities.Activity", "Activity")
+                        .WithMany("PreRegistrations")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Domain.Core.Activity.Entities.Responsibility", "Responsibility")
+                        .WithMany("PreRegistrations")
+                        .HasForeignKey("ResponsibilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Activity");
+
+                    b.Navigation("Responsibility");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.RequestTicket", b =>
+                {
+                    b.HasOne("App.Domain.Core.Activity.Entities.FinalRegistration", "FinalRegistration")
+                        .WithMany("RequestTickets")
+                        .HasForeignKey("FinalRegistrationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FinalRegistration");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.ResponsibilityTR", b =>
+                {
+                    b.HasOne("App.Domain.Core.Activity.Entities.Responsibility", "Responsibility")
+                        .WithMany("ResponsibilityTRs")
+                        .HasForeignKey("ResponsibilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Responsibility");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.Ticket", b =>
+                {
+                    b.HasOne("App.Domain.Core.Activity.Entities.Transportation", "Transportation")
+                        .WithMany("Tickets")
+                        .HasForeignKey("TransportationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Transportation");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.Transportation", b =>
+                {
+                    b.HasOne("App.Domain.Core.Activity.Entities.Activity", "Activity")
+                        .WithMany("Transportations")
+                        .HasForeignKey("ActivityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Activity");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Area", b =>
+                {
+                    b.HasOne("App.Domain.Core.Area.Entities.Zone", "Zone")
+                        .WithMany("Areas")
+                        .HasForeignKey("ZoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Zone");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Province", b =>
+                {
+                    b.HasOne("App.Domain.Core.Area.Entities.Country", "Country")
+                        .WithMany("Provinces")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.TransportationArea", b =>
+                {
+                    b.HasOne("App.Domain.Core.Area.Entities.Zone", "Zone")
+                        .WithMany("TransportationAreas")
+                        .HasForeignKey("ZoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Zone");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Zone", b =>
+                {
+                    b.HasOne("App.Domain.Core.Area.Entities.Province", "Province")
+                        .WithMany("Zones")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Province");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Person.Entities.Document", b =>
@@ -559,6 +1100,51 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                         .HasForeignKey("SkillsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.Activity", b =>
+                {
+                    b.Navigation("FinalRegistrations");
+
+                    b.Navigation("PreRegistrations");
+
+                    b.Navigation("Transportations");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.FinalRegistration", b =>
+                {
+                    b.Navigation("RequestTickets");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.Responsibility", b =>
+                {
+                    b.Navigation("FinalRegistrations");
+
+                    b.Navigation("PreRegistrations");
+
+                    b.Navigation("ResponsibilityTRs");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Activity.Entities.Transportation", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Country", b =>
+                {
+                    b.Navigation("Provinces");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Province", b =>
+                {
+                    b.Navigation("Zones");
+                });
+
+            modelBuilder.Entity("App.Domain.Core.Area.Entities.Zone", b =>
+                {
+                    b.Navigation("Areas");
+
+                    b.Navigation("TransportationAreas");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Person.Entities.Person", b =>
