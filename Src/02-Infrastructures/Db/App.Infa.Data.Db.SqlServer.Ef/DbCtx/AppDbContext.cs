@@ -1,4 +1,5 @@
-﻿using App.Domain.Core.Person.Entities;
+﻿using App.Domain.Core.Area.Entities;
+using App.Domain.Core.Person.Entities;
 using Azure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -29,17 +30,26 @@ namespace App.Infa.Data.Db.SqlServer.Ef.DbCtx
         public DbSet<Document> Documents { get; set; }
         
 
+
+        public DbSet<Country> Countrys { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<Zone> Zones { get; set; }
+        public DbSet<Airport> Airports { get; set; }
+        public DbSet<Area> Areas { get; set; }
+
+
     }
 }
 
 
 public class User : IdentityUser<int>
 {
+    public int? PersonId { get; set; }
 
 }
 
 public class Role : IdentityRole<int>
 {
     [MaxLength(50)]
-    public string NameFa { get; set; }
+    public required string NameFa { get; set; }
 }
