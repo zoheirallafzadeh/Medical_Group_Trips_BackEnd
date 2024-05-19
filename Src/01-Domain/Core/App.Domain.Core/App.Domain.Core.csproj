@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Activity\Data\" />
-    <Folder Include="Activity\DTOs\Activity\" />
     <Folder Include="Activity\Services\" />
     <Folder Include="Area\AppServices\" />
     <Folder Include="Area\Data\" />
