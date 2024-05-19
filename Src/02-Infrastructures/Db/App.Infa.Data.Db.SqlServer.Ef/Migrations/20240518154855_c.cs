@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
 {
     /// <inheritdoc />
-    public partial class creat : Migration
+    public partial class c : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -97,18 +97,25 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PersonConfirmationCertificate",
+                name: "People",
                 schema: "PERSON",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IsConfirmedActive = table.Column<bool>(type: "bit", nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    NationalCode = table.Column<string>(type: "char(10)", unicode: false, fixedLength: true, maxLength: 10, nullable: true),
+                    EnFirstName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    EnLastName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    BirthDate = table.Column<DateOnly>(type: "date", nullable: true),
+                    mobnumber = table.Column<string>(type: "varchar(13)", unicode: false, maxLength: 13, nullable: true),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
+                    AspNetUsersId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonConfirmationCertificate", x => x.Id);
+                    table.PrimaryKey("PK_People", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -282,54 +289,26 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "People",
+                name: "PersonConfirmationCertificate",
                 schema: "PERSON",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NationalCode = table.Column<string>(type: "char(10)", unicode: false, fixedLength: true, maxLength: 10, nullable: false),
-                    EnFirstName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    EnLastName = table.Column<string>(type: "varchar(50)", unicode: false, maxLength: 50, nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    BirthDate = table.Column<DateOnly>(type: "date", nullable: true),
-                    mobnumber = table.Column<string>(type: "varchar(13)", unicode: false, maxLength: 13, nullable: true),
-                    Gender = table.Column<bool>(type: "bit", nullable: false),
-                    AspNetUsersId = table.Column<int>(type: "int", nullable: true),
-                    PersonConfirmationCertificateId = table.Column<int>(type: "int", nullable: true)
+                    IsConfirmedActive = table.Column<bool>(type: "bit", nullable: false),
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_People", x => x.Id);
+                    table.PrimaryKey("PK_PersonConfirmationCertificate", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_People_PersonConfirmationCertificate_PersonConfirmationCertificateId",
-                        column: x => x.PersonConfirmationCertificateId,
+                        name: "FK_PersonConfirmationCertificate_People_PersonId",
+                        column: x => x.PersonId,
                         principalSchema: "PERSON",
-                        principalTable: "PersonConfirmationCertificate",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TypeOfMedicalCertificate",
-                schema: "PERSON",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PersonConfirmationCertificateId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TypeOfMedicalCertificate", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TypeOfMedicalCertificate_PersonConfirmationCertificate_PersonConfirmationCertificateId",
-                        column: x => x.PersonConfirmationCertificateId,
-                        principalSchema: "PERSON",
-                        principalTable: "PersonConfirmationCertificate",
-                        principalColumn: "Id");
+                        principalTable: "People",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -503,30 +482,24 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Skill",
+                name: "TypeOfMedicalCertificate",
                 schema: "PERSON",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
-                    TypeOfMedicalCertificateId = table.Column<int>(type: "int", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PersonConfirmationCertificateId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Skill", x => x.Id);
+                    table.PrimaryKey("PK_TypeOfMedicalCertificate", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Skill_PersonConfirmationCertificate_PersonConfirmationCertificateId",
+                        name: "FK_TypeOfMedicalCertificate_PersonConfirmationCertificate_PersonConfirmationCertificateId",
                         column: x => x.PersonConfirmationCertificateId,
                         principalSchema: "PERSON",
                         principalTable: "PersonConfirmationCertificate",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Skill_TypeOfMedicalCertificate_TypeOfMedicalCertificateId",
-                        column: x => x.TypeOfMedicalCertificateId,
-                        principalSchema: "PERSON",
-                        principalTable: "TypeOfMedicalCertificate",
                         principalColumn: "Id");
                 });
 
@@ -602,6 +575,34 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                         principalTable: "Zone",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Skill",
+                schema: "PERSON",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "varchar(max)", unicode: false, nullable: false),
+                    TypeOfMedicalCertificateId = table.Column<int>(type: "int", nullable: true),
+                    PersonConfirmationCertificateId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skill", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Skill_PersonConfirmationCertificate_PersonConfirmationCertificateId",
+                        column: x => x.PersonConfirmationCertificateId,
+                        principalSchema: "PERSON",
+                        principalTable: "PersonConfirmationCertificate",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Skill_TypeOfMedicalCertificate_TypeOfMedicalCertificateId",
+                        column: x => x.TypeOfMedicalCertificateId,
+                        principalSchema: "PERSON",
+                        principalTable: "TypeOfMedicalCertificate",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -727,12 +728,10 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                 column: "ResponsibilityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_People_PersonConfirmationCertificateId",
+                name: "IX_PersonConfirmationCertificate_PersonId",
                 schema: "PERSON",
-                table: "People",
-                column: "PersonConfirmationCertificateId",
-                unique: true,
-                filter: "[PersonConfirmationCertificateId] IS NOT NULL");
+                table: "PersonConfirmationCertificate",
+                column: "PersonId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonSkill_SkillsId",
@@ -884,10 +883,6 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "People",
-                schema: "PERSON");
-
-            migrationBuilder.DropTable(
                 name: "FinalRegistration",
                 schema: "ACTIVITY");
 
@@ -926,6 +921,10 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
             migrationBuilder.DropTable(
                 name: "Country",
                 schema: "AREA");
+
+            migrationBuilder.DropTable(
+                name: "People",
+                schema: "PERSON");
         }
     }
 }
