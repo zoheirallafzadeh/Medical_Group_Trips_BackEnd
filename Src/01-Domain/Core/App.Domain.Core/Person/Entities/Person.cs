@@ -12,15 +12,15 @@ namespace App.Domain.Core.Person.Entities
 
         [StringLength(10)]
         [Unicode(false)]
-        public string NationalCode { get; set; } = null!;
+        public string? NationalCode { get; set; } = null!;
 
         [Unicode(false)]
         [MaxLength(50)]
-        public string EnFirstName { get; set; } = null!;
+        public string? EnFirstName { get; set; } = null!;
 
         [Unicode(false)]
         [MaxLength(50)]
-        public string EnLastName { get; set; } = null!;
+        public string? EnLastName { get; set; } = null!;
 
         [MaxLength(50)]
         public string? FirstName { get; set; } = null!;
@@ -36,13 +36,10 @@ namespace App.Domain.Core.Person.Entities
 
         public bool Gender { get; set; }
         public virtual List<Skill>? Skills { get; set; }
-        //[InverseProperty("Person")]
         public virtual List<Document>? Documents { get; set; }
 
         public int? AspNetUsersId { get; set; }
-
-        public int? PersonConfirmationCertificateId { get; set; }
-        public PersonConfirmationCertificate? PersonConfirmationCertificate { get; set; }
+        public List<PersonConfirmationCertificate>? PersonConfirmationCertificates { get; set; }
 
     }
 }

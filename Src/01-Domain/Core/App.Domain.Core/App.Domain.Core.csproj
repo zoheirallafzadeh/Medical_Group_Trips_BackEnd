@@ -7,20 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Activity\AppServices\" />
     <Folder Include="Activity\Data\" />
-    <Folder Include="Activity\DTOs\" />
+    <Folder Include="Activity\DTOs\Activity\" />
     <Folder Include="Activity\Services\" />
     <Folder Include="Area\AppServices\" />
     <Folder Include="Area\Data\" />
     <Folder Include="Area\DTOs\" />
     <Folder Include="Area\Enum\" />
     <Folder Include="Area\Services\" />
-    <Folder Include="Person\AppServices\" />
     <Folder Include="Person\Data\" />
-    <Folder Include="Person\DTOs\" />
     <Folder Include="Person\Enum\" />
-    <Folder Include="Person\Services\" />
     <Folder Include="Transport\AppServices\" />
     <Folder Include="Transport\Data\" />
     <Folder Include="Transport\DTOs\" />

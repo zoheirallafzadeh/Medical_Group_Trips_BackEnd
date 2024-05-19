@@ -9,7 +9,7 @@ namespace App.Domain.Core.Person.Entities
         public int Id { get; set; }
         public required bool IsConfirmedActive { get; set; }
 
-        //public int PersonId { get; set; }
+        public int PersonId { get; set; }
         public required Person Person { get; set; }
 
         //public int SkillId { get; set; }

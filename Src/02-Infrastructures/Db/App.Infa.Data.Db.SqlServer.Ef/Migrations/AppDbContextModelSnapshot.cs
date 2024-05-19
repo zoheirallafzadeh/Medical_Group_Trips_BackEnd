@@ -472,13 +472,11 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("EnFirstName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
 
                     b.Property<string>("EnLastName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .IsUnicode(false)
                         .HasColumnType("varchar(50)");
@@ -495,14 +493,10 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("NationalCode")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .IsUnicode(false)
                         .HasColumnType("char(10)")
                         .IsFixedLength();
-
-                    b.Property<int?>("PersonConfirmationCertificateId")
-                        .HasColumnType("int");
 
                     b.Property<string>("mobnumber")
                         .HasMaxLength(13)
@@ -510,10 +504,6 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                         .HasColumnType("varchar(13)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PersonConfirmationCertificateId")
-                        .IsUnique()
-                        .HasFilter("[PersonConfirmationCertificateId] IS NOT NULL");
 
                     b.ToTable("People", "PERSON");
                 });
@@ -529,10 +519,15 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                     b.Property<bool>("IsConfirmedActive")
                         .HasColumnType("bit");
 
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PersonId");
 
                     b.ToTable("PersonConfirmationCertificate", "PERSON");
                 });
@@ -989,13 +984,15 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
                     b.Navigation("PersonConfirmationCertificate");
                 });
 
-            modelBuilder.Entity("App.Domain.Core.Person.Entities.Person", b =>
+            modelBuilder.Entity("App.Domain.Core.Person.Entities.PersonConfirmationCertificate", b =>
                 {
-                    b.HasOne("App.Domain.Core.Person.Entities.PersonConfirmationCertificate", "PersonConfirmationCertificate")
-                        .WithOne("Person")
-                        .HasForeignKey("App.Domain.Core.Person.Entities.Person", "PersonConfirmationCertificateId");
+                    b.HasOne("App.Domain.Core.Person.Entities.Person", "Person")
+                        .WithMany("PersonConfirmationCertificates")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("PersonConfirmationCertificate");
+                    b.Navigation("Person");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Person.Entities.Skill", b =>
@@ -1147,14 +1144,13 @@ namespace App.Infa.Data.Db.SqlServer.Ef.Migrations
             modelBuilder.Entity("App.Domain.Core.Person.Entities.Person", b =>
                 {
                     b.Navigation("Documents");
+
+                    b.Navigation("PersonConfirmationCertificates");
                 });
 
             modelBuilder.Entity("App.Domain.Core.Person.Entities.PersonConfirmationCertificate", b =>
                 {
                     b.Navigation("Document");
-
-                    b.Navigation("Person")
-                        .IsRequired();
 
                     b.Navigation("Skill")
                         .IsRequired();

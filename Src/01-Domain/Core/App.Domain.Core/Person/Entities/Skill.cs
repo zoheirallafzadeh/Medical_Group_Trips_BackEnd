@@ -15,7 +15,7 @@ namespace App.Domain.Core.Person.Entities
 
         public int Id { get; set; }
 
-        [Unicode(false)]
+        [Comment("fa name")]
         public required string Name { get; set; }
 
         //[InverseProperty("Skill")]

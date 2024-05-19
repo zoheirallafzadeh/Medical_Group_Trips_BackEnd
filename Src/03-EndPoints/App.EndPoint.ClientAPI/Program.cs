@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 
 
 
-builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(@"Server=DESKTOP-OG56BKU;Integrated Security=true;Database=GPRI12;TrustServerCertificate=True;").LogTo(Console.WriteLine));
+builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(@"Server=DESKTOP-OG56BKU;Integrated Security=true;Database=GPRI13;TrustServerCertificate=True;").LogTo(Console.WriteLine));
 
 
 builder.Services.AddIdentity<User, Role>(option =>
@@ -42,6 +42,18 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+
+
+
+app.MapControllerRoute(
+      name: "areas",
+      pattern: "api/{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//app.MapControllers();
 
 app.Run();
