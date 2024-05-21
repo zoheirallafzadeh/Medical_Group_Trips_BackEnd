@@ -53,14 +53,14 @@ namespace App.Infa.Data.Db.SqlServer.Ef.DbCtx
 
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Person>(entity =>
             {
                 entity.Property(e => e.NationalCode).IsFixedLength();
-                
+
             });
 
             modelBuilder.Entity<PreRegistration>(entity =>
@@ -83,6 +83,10 @@ namespace App.Infa.Data.Db.SqlServer.Ef.DbCtx
                 entity.Property(e => e.CreatedTime).HasDefaultValueSql("(getdate())");
                 entity.Property(e => e.IsDeleted).HasDefaultValue(false);
             });
+            modelBuilder.Entity<Responsibility>(entity =>
+            {
+                entity.Property(e => e.IsDeleted).HasDefaultValue(false);
+            });
 
         }
     }
@@ -97,17 +101,17 @@ namespace App.Infa.Data.Db.SqlServer.Ef.DbCtx
 
 
 
-    public class User : IdentityUser<int>
-    {
+public class User : IdentityUser<int>
+{
 
-        public int PersonId { get; set; }
+    public int PersonId { get; set; }
 
-    }
+}
 
-    public class Role : IdentityRole<int>
-    {
-        [MaxLength(50)]
-        public required string NameFa { get; set; }
+public class Role : IdentityRole<int>
+{
+    [MaxLength(50)]
+    public required string NameFa { get; set; }
 
-    }
+}
 

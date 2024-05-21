@@ -10,7 +10,7 @@ namespace App.Domain.Core.Activity.Entities
         public required Activity Activity { get; set; }
 
         public DateTime? CreatedDateTime { get; set; }
-        public DateTime? UpdatedDateTime { get; set; }
+        public DateTime? LastUpdatedDateTime { get; set; }
         public bool IsDeleted { get; set; }
 
         public int PersonId { get; set; }

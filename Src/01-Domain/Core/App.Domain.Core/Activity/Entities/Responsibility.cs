@@ -8,11 +8,12 @@ namespace App.Domain.Core.Activity.Entities
     {
         public int Id { get; set; }
         public required string EnName { get; set; }
-        public int RelevantSkillsId { get; set; }
+        public int? RelevantSkillsId { get; set; }
         public List<ResponsibilityTR>? ResponsibilityTRs { get; set;}
 
         public virtual List<PreRegistration>? PreRegistrations { get; set; }
         public virtual List<FinalRegistration>? FinalRegistrations { get; set;}
 
+        public bool IsDeleted { get; set; }
     }
 }
