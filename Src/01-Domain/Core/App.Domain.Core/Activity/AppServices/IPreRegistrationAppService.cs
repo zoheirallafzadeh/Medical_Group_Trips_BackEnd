@@ -3,7 +3,7 @@
 
 namespace App.Domain.Core.Activity.AppServices
 {
-    public interface PreRegistrationAppService
+    public interface IPreRegistrationAppService
     {
         public Task Add(int ActivityId, int PersoneId, int ResponsibilityId, int PersonCreatorId, CancellationToken cancellationToken);
         public Task<List<PreRegistrationDto>> Get(int ActivityId, CancellationToken cancellationToken);

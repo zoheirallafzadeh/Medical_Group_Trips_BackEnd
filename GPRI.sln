@@ -19,17 +19,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Db", "Db", "{4FA8CC06-2D49-4BDB-BD3D-9FAEC7B37B7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Domain.Core", "Src\01-Domain\Core\App.Domain.Core\App.Domain.Core.csproj", "{6D401304-C449-4288-892F-FF92387AB1FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Core", "Src\01-Domain\Core\App.Domain.Core\App.Domain.Core.csproj", "{6D401304-C449-4288-892F-FF92387AB1FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Domain.AppServices", "Src\01-Domain\Services\App.Domain.AppServices\App.Domain.AppServices.csproj", "{5FBA822C-547F-4E63-B434-F038F52B534B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.AppServices", "Src\01-Domain\Services\App.Domain.AppServices\App.Domain.AppServices.csproj", "{5FBA822C-547F-4E63-B434-F038F52B534B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6D401304-C449-4288-892F-FF92387AB1FE} = {6D401304-C449-4288-892F-FF92387AB1FE}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Domain.Services", "Src\01-Domain\Services\App.Domain.Services\App.Domain.Services.csproj", "{2DA0377E-116F-4C85-ABF4-CB25D6A9BB92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain.Services", "Src\01-Domain\Services\App.Domain.Services\App.Domain.Services.csproj", "{2DA0377E-116F-4C85-ABF4-CB25D6A9BB92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infra.Data.Repos.Ef", "Src\02-Infrastructures\DataAccess\App.Infra.Data.Repos.Ef\App.Infra.Data.Repos.Ef.csproj", "{C2DD49CE-1C1E-4705-AAB5-C215216159C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infra.Data.Repos.Ef", "Src\02-Infrastructures\DataAccess\App.Infra.Data.Repos.Ef\App.Infra.Data.Repos.Ef.csproj", "{C2DD49CE-1C1E-4705-AAB5-C215216159C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infa.Data.Db.SqlServer.Ef", "Src\02-Infrastructures\Db\App.Infa.Data.Db.SqlServer.Ef\App.Infa.Data.Db.SqlServer.Ef.csproj", "{F493A51C-665C-413C-BD5A-008F65F0AB9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infa.Data.Db.SqlServer.Ef", "Src\02-Infrastructures\Db\App.Infa.Data.Db.SqlServer.Ef\App.Infa.Data.Db.SqlServer.Ef.csproj", "{F493A51C-665C-413C-BD5A-008F65F0AB9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.EndPoint.ClientAPI", "Src\03-EndPoints\App.EndPoint.ClientAPI\App.EndPoint.ClientAPI.csproj", "{3AAD8353-5C2D-410D-A9FB-EB6ABCF2C929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.EndPoint.ClientAPI", "Src\03-EndPoints\App.EndPoint.ClientAPI\App.EndPoint.ClientAPI.csproj", "{3AAD8353-5C2D-410D-A9FB-EB6ABCF2C929}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
