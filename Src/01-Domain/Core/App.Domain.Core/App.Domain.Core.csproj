@@ -12,7 +12,6 @@
 		<Folder Include="Area\DTOs\" />
 		<Folder Include="Area\Enum\" />
 		<Folder Include="Area\Services\" />
-		<Folder Include="Person\Data\" />
 		<Folder Include="Person\Enum\" />
 		<Folder Include="Transport\AppServices\" />
 		<Folder Include="Transport\Data\" />
