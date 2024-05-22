@@ -7,7 +7,7 @@ namespace App.Domain.Core.Person.AppServices
     {
        
         public Task Add(PersonCreateDto Person , CancellationToken cancellationToken);
-        public Task Add(PersonCreateDto Person, List<int> SkillsId, CancellationToken cancellationToken);
+        public Task Add(PersonCreateDto Person, List<int> SkillsIds, CancellationToken cancellationToken);
         public Task Update(PersonWithSkillsDto personWithSkills, CancellationToken cancellationToken);
         public Task<List<PersonDto>> Get(int  SkillsId, CancellationToken cancellationToken);
         public Task<List<PersonWithSkillsDto>> GetPersonWithSkills(CancellationToken cancellationToken);
