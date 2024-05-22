@@ -1,48 +1,48 @@
 ﻿using App.Domain.Core.Activity.AppServices;
 using App.Domain.Core.Activity.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using App.Domain.Core.Activity.Services;
+
 
 namespace App.Domain.AppServices.Activity
 {
     public class ActivityAppService : IActivityAppService
     {
-        public Task Add(DateOnly StartDate, DateOnly EndDate, CancellationToken cancellationToken, int? AreaId)
+        private readonly IActivityService _activityService;
+        public ActivityAppService(IActivityService activityService) => _activityService = activityService;
+
+        public async Task Add(DateOnly StartDate, DateOnly EndDate, CancellationToken cancellationToken, int? AreaId)
         {
-            throw new NotImplementedException();
+            await _activityService.Add(StartDate, EndDate, cancellationToken, AreaId);
         }
 
-        public Task<ActivityDto> Get(int ActivityId, CancellationToken cancellationToken)
+        public async Task<ActivityDto> Get(int ActivityId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _activityService.Get(ActivityId, cancellationToken);
         }
 
-        public Task<List<ActivityDto>> Get(CancellationToken cancellationToken)
+        public async Task<List<ActivityDto>> Get(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _activityService.Get(cancellationToken);
         }
 
-        public Task<List<ActivityDto>> Get(List<int> ActivityIds, CancellationToken cancellationToken)
+        public async Task<List<ActivityDto>> Get(List<int> ActivityIds, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _activityService.Get(ActivityIds, cancellationToken);
         }
 
-        public Task<List<ActivityDto>> GetLastAdd(int LastNumber, CancellationToken cancellationToken)
+        public async Task<List<ActivityDto>> GetLastAdd(int LastNumber, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _activityService.GetLastAdd(LastNumber, cancellationToken);
         }
 
-        public Task<List<ActivityDto>> GetNotDone(CancellationToken cancellationToken)
+        public async Task<List<ActivityDto>> GetNotDone(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _activityService.GetNotDone(cancellationToken);
         }
 
-        public Task<ActivityDto> Update(CancellationToken cancellationToken)
+        public async Task<ActivityDto> Update(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await _activityService.Update(cancellationToken);
         }
     }
 }
