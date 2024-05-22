@@ -40,9 +40,9 @@ namespace App.Domain.AppServices.Activity
             return await _activityService.GetNotDone(cancellationToken);
         }
 
-        public async Task<ActivityDto> Update(CancellationToken cancellationToken)
+        public async Task Update(ActivityDto activityDto, CancellationToken cancellationToken)
         {
-            return await _activityService.Update(cancellationToken);
+            await _activityService.Update(activityDto, cancellationToken);
         }
     }
 }

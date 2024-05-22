@@ -12,6 +12,6 @@ namespace App.Domain.Core.Activity.AppServices
 
         public Task<List<ActivityDto>> GetNotDone(CancellationToken cancellationToken);
 
-        public Task<ActivityDto> Update(CancellationToken cancellationToken);
+        public Task Update(ActivityDto activityDto, CancellationToken cancellationToken);
     }
 }
