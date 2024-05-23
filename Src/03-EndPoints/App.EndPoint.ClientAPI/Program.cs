@@ -1,4 +1,10 @@
+using App.Domain.AppServices.Activity;
+using App.Domain.Core.Activity.AppServices;
+using App.Domain.Core.Activity.Data.Repositories;
+using App.Domain.Core.Activity.Services;
+using App.Domain.Services.Activity;
 using App.Infa.Data.Db.SqlServer.Ef.DbCtx;
+using App.Infra.Data.Repos.Ef.Activity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data;
@@ -29,6 +35,18 @@ builder.Services.AddIdentity<User, Role>(option =>
 
 
 
+builder.Services.AddScoped<IActivityAppService, ActivityAppService>();
+builder.Services.AddScoped<IActivityService, ActivityService>();
+builder.Services.AddScoped<IActivityCommandRepository, ActivityCommandRepository>();
+builder.Services.AddScoped<IActivityQueryRepository , ActivityQueryRepository>();
+
+
+
+
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,15 +63,15 @@ app.UseAuthorization();
 
 
 
-app.MapControllerRoute(
-      name: "areas",
-      pattern: "api/{area:exists}/{controller=Home}/{action=Index}/{id?}"
-    );
+//app.MapControllerRoute(
+//      name: "areas",
+//      pattern: "api/{area:exists}/{controller=Home}/{action=Index}/{id?}"
+//    );
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+//app.MapControllerRoute(
+//    name: "default",
+//    pattern: "{controller=Home}/{action=Index}/{id?}");
 
-//app.MapControllers();
+app.MapControllers();
 
 app.Run();
