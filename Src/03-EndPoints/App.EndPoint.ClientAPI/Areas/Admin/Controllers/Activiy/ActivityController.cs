@@ -4,7 +4,7 @@ using App.EndPoint.ClientAPI.Areas.Admin.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace App.EndPoint.ClientAPI.Areas.Admin.Controllers
+namespace App.EndPoint.ClientAPI.Areas.Admin.Controllers.Activiy
 {
 
     [Area("admin")]
@@ -17,20 +17,24 @@ namespace App.EndPoint.ClientAPI.Areas.Admin.Controllers
         {
             _activityAppService = activityAppService;
         }
+
+
         [Route("[Action]")]
         [HttpPost]
-        public async void Add(ActivityAddModel activityAddModel, CancellationToken cancellationToken)
+        public async Task<IActionResult> Add(ActivityAddModel activityAddModel, CancellationToken cancellationToken)
         {
-
-
-            await _activityAppService.Add(activityAddModel.StartDate, activityAddModel.EndDate, cancellationToken, activityAddModel.AreaId);
-        }
-
-        [HttpGet]
-        [Route("[Action]")]
-        public IActionResult Get() {
-            return Ok(DateOnly.FromDateTime(DateTime.Now));
             
+            await _activityAppService.Add(activityAddModel.StartDate, activityAddModel.EndDate, cancellationToken, activityAddModel.AreaId);
+            return Ok();
         }
+
+
+        [HttpPost]
+        [Route("[Action]")]
+        public async Task Update(ActivityDto activityDto, CancellationToken cancellationToken)
+        {
+            await _activityAppService.Update(activityDto, cancellationToken);
+        }
+
     }
 }

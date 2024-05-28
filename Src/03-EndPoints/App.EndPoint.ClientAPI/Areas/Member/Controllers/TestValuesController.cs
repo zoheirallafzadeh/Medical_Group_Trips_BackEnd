@@ -45,6 +45,15 @@ namespace App.EndPoint.ClientAPI.Areas.Member.Controllers
         }
 
 
+        [HttpGet]
+        [Route("[Action]")]
+        public IEnumerable<DateOnly> GetNowDate()
+        {
+            //return DateOnly.FromDateTime(DateTime.Now);
+            return new DateOnly[] { DateOnly.FromDateTime(DateTime.Now) };
+
+        }
+
         [Route("[Action]")]
         [HttpPost]
         public IEnumerable<int> PostTestdId([FromBody] int id)

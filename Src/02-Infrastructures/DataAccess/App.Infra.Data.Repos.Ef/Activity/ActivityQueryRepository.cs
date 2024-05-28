@@ -1,5 +1,5 @@
 ﻿
-
+using App.Domain.Core.Activity.Entities;
 using App.Domain.Core.Activity.Data.Repositories;
 using App.Domain.Core.Activity.DTOs;
 
@@ -10,6 +10,7 @@ namespace App.Infra.Data.Repos.Ef.Activity
         public Task<ActivityDto> Get(int ActivityId, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
+            
         }
 
         public Task<List<ActivityDto>> Get(CancellationToken cancellationToken)

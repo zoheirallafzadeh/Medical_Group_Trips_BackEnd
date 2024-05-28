@@ -19,6 +19,7 @@ namespace App.Domain.Services.Activity
 
         public async Task Add(DateOnly StartDate, DateOnly EndDate, CancellationToken cancellationToken, int? AreaId)
         {
+
             await _commandRepository.Add(StartDate, EndDate, cancellationToken, AreaId);
         }
 
