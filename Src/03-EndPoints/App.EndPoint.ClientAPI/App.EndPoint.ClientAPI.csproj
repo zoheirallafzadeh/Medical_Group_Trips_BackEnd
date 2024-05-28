@@ -12,15 +12,25 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\01-Domain\Core\App.Domain.Core\App.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\01-Domain\Services\App.Domain.AppServices\App.Domain.AppServices.csproj" />
+    <ProjectReference Include="..\..\01-Domain\Services\App.Domain.Services\App.Domain.Services\App.Domain.Services.csproj" />
+    <ProjectReference Include="..\..\02-Infrastructures\DataAccess\App.Infra.Data.Repos.Ef\App.Infra.Data.Repos.Ef.csproj" />
     <ProjectReference Include="..\..\02-Infrastructures\Db\App.Infa.Data.Db.SqlServer.Ef\App.Infa.Data.Db.SqlServer.Ef.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\" />
+    <Folder Include="Areas\Member\Data\" />
+    <Folder Include="Areas\Member\Views\" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,7 @@
 ﻿using App.Domain.Core.Person.AppServices;
 using App.Domain.Core.Person.DTOs.Skill;
 using App.Domain.Core.Person.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace App.Domain.AppServices.Person
 {
